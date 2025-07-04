@@ -39,14 +39,14 @@ fn main() {
             match extension {
                 Some(extension) => extension.to_str().unwrap().to_string(),
                 None => {
-                    eprintln!("No file extension nor source format provided");
+                    eprintln!("No source file extension nor source format provided");
                     std::process::exit(1);
                 }
             }
         },
         (_, Some(source_format)) => source_format,
         (None, None) => {
-            eprintln!("No source or source format provided");
+            eprintln!("No source nor source format provided");
             std::process::exit(1);
         }
     };
@@ -57,7 +57,7 @@ fn main() {
             match extension {
                 Some(extension) => extension.to_str().unwrap().to_string(),
                 None => {
-                    eprintln!("No file extension nor destination format provided");
+                    eprintln!("No destination file extension nor destination format provided");
                     std::process::exit(1);
                 }
             }
