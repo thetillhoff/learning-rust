@@ -35,9 +35,8 @@ fn main() {
 
     let source_format = match (args.source, args.source_format) {
         (Some(source), None) => {
-            let extension = Path::new(&source).extension();
-            match extension {
-                Some(extension) => extension.to_str().unwrap().to_string(),
+            match Path::new(&source).extension() {
+                Some(extension) => extension.to_string_lossy().into_owned(),
                 None => {
                     eprintln!("No source file extension nor source format provided");
                     std::process::exit(1);
@@ -53,9 +52,8 @@ fn main() {
 
     let destination_format = match (args.destination, args.destination_format) {
         (Some(destination), None) => {
-            let extension = Path::new(&destination).extension();
-            match extension {
-                Some(extension) => extension.to_str().unwrap().to_string(),
+            match Path::new(&destination).extension() {
+                Some(extension) => extension.to_string_lossy().into_owned(),
                 None => {
                     eprintln!("No destination file extension nor destination format provided");
                     std::process::exit(1);
