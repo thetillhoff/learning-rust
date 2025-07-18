@@ -15,23 +15,23 @@ use std::path::Path;
 pub(crate) struct Args {
     /// Source path
     #[arg(short, long, required = false)]
-    source: Option<String>,
+    pub(crate) source: Option<String>,
 
     /// Source format
     #[arg(long, required = false)]
-    source_format: Option<String>,
+    pub(crate) source_format: Option<String>,
 
     /// Destination path
     #[arg(short, long, required = false)]
-    destination: Option<String>,
+    pub(crate) destination: Option<String>,
 
     /// Destination format
     #[arg(long, required = false)]
-    destination_format: Option<String>,
+    pub(crate) destination_format: Option<String>,
 }
 
-pub(crate) fn source_format(args: Args) -> String {
-    match (args.source, args.source_format) {
+pub(crate) fn source_format(source: Option<String>, source_format: Option<String>) -> String {
+    match (source, source_format) {
         (Some(source), None) => match Path::new(&source).extension() {
             Some(extension) => extension.to_string_lossy().into_owned(),
             None => {
@@ -47,8 +47,8 @@ pub(crate) fn source_format(args: Args) -> String {
     }
 }
 
-pub(crate) fn destination_format(args: Args) -> String {
-    match (args.destination, args.destination_format) {
+pub(crate) fn destination_format(destination: Option<String>, destination_format: Option<String>) -> String {
+    match (destination, destination_format) {
         (Some(destination), None) => match Path::new(&destination).extension() {
             Some(extension) => extension.to_string_lossy().into_owned(),
             None => {

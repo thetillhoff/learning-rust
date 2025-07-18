@@ -4,8 +4,8 @@ mod cli;
 
 fn main() {
     let args = cli::Args::parse();
-    let source_format = cli::source_format(args.clone());
-    let destination_format = cli::destination_format(args.clone());
+    let source_format = cli::source_format(args.source, args.source_format);
+    let destination_format = cli::destination_format(args.destination, args.destination_format);
 
     println!("source_format: {:?}", source_format);
     println!("destination_format: {:?}", destination_format);
