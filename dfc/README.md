@@ -36,6 +36,7 @@ dfc --source sqlite://path/to/database.db --destination json://target.dump
 ## Supported file formats
 
 ### CSV
+
 [ ] All columns are of type string
 [ ] Types of columns are automatically detected
     Supported types:
@@ -54,13 +55,20 @@ dfc --source sqlite://path/to/database.db --destination json://target.dump
 [ ] duckdb
 [ ] Parquet
 [ ] ProtoBuf
-[ ] https://avro.apache.org/
+[ ] [Avro](https://avro.apache.org/)
 
 ## Roadmap
 
 [x] CLI-tool
+[x] Read file line by line
+[ ] Write file line by line
+[ ] Add tests
 [ ] Load CSV
 [ ] Write CSV
+[ ] Analyze types of columns
+[ ] Read from stdin
+[ ] Write to stdout
+[ ] Read input stream character by character (like if json strings are streamed)
+[ ] Write output stream character by character (like if json strings are streamed)
 [ ] Load JSON
 [ ] Write JSON
-[ ] "PullParser" - better parser that can control a reader
