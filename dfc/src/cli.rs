@@ -11,7 +11,7 @@ use std::path::Path;
 
 /// Data format converter
 #[derive(Parser, Debug, Clone)]
-#[command(version, about, long_about)]
+#[command(version, about, long_about, arg_required_else_help = true)]
 pub(crate) struct Args {
     /// Source path
     #[arg(short, long, required = false)]

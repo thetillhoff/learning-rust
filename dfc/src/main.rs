@@ -9,6 +9,7 @@ fn main() {
 
     println!("source_format: {:?}", source_format);
     println!("destination_format: {:?}", destination_format);
+
     // read file - batch wise / streaming
     // write file - batch wise / streaming
     // TODO type reflection
