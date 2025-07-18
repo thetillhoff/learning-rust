@@ -27,6 +27,10 @@ dfc --source A.csv # auto-detect source format based on file extension
 dfc --source A.csv --source-format csv # force source format
 dfc --destination B.json # auto-detect destination format based on file extension
 dfc --destination B.json --destination-format json # force destination format
+
+# Database paths (idea)
+dfc --source sqlite://path/to/database.db --destination target.json
+dfc --source sqlite://path/to/database.db --destination json://target.dump
 ```
 
 ## Supported file formats
@@ -43,6 +47,7 @@ dfc --destination B.json --destination-format json # force destination format
     - datetime (YYYY-MM-DD HH:MM:SS)
     - timestamp (YYYY-MM-DD HH:MM:SS.SSS)
 
+[ ] fixed column width format
 [ ] JSON
 [ ] XML
 [ ] sqlite
@@ -58,3 +63,4 @@ dfc --destination B.json --destination-format json # force destination format
 [ ] Write CSV
 [ ] Load JSON
 [ ] Write JSON
+[ ] "PullParser" - better parser that can control a reader
