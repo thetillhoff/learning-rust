@@ -30,7 +30,7 @@ pub(crate) struct Args {
     pub(crate) destination_format: Option<String>,
 }
 
-pub(crate) fn source_format(source: Option<String>, source_format: Option<String>) -> String {
+pub(crate) fn source_format(source: Option<&String>, source_format: Option<&String>) -> String {
     match (source, source_format) {
         (Some(source), None) => match Path::new(&source).extension() {
             Some(extension) => extension.to_string_lossy().into_owned(),
@@ -39,7 +39,7 @@ pub(crate) fn source_format(source: Option<String>, source_format: Option<String
                 std::process::exit(1);
             }
         },
-        (_, Some(source_format)) => source_format,
+        (_, Some(source_format)) => source_format.clone(),
         (None, None) => {
             eprintln!("No source nor source format provided");
             std::process::exit(1);
@@ -47,7 +47,7 @@ pub(crate) fn source_format(source: Option<String>, source_format: Option<String
     }
 }
 
-pub(crate) fn destination_format(destination: Option<String>, destination_format: Option<String>) -> String {
+pub(crate) fn destination_format(destination: Option<&String>, destination_format: Option<&String>) -> String {
     match (destination, destination_format) {
         (Some(destination), None) => match Path::new(&destination).extension() {
             Some(extension) => extension.to_string_lossy().into_owned(),
@@ -56,7 +56,7 @@ pub(crate) fn destination_format(destination: Option<String>, destination_format
                 std::process::exit(1);
             }
         },
-        (_, Some(destination_format)) => destination_format,
+        (_, Some(destination_format)) => destination_format.clone(),
         (None, None) => {
             eprintln!("No destination or destination format provided");
             std::process::exit(1);
