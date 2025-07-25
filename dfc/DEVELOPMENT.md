@@ -7,3 +7,11 @@ cargo build # unoptimized binary, located in target/debug/<name>
 cargo build --release # optimized binary, located in target/release/<name>
 cargo fmt # format code
 ```
+
+## Next steps
+
+- binary/main uses lib
+- intermediate format between readers and writers
+  - Col
+  - Row
+  - Cell

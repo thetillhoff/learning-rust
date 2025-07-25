@@ -1,36 +1,28 @@
 use clap::Parser;
 use std::path::Path;
 
-// enum SourceFormat {
-//     Csv,
-//     Json,
-//     Xml,
-//     Sqlite,
-//     Duckdb,
-// }
-
 /// Data format converter
 #[derive(Parser, Debug, Clone)]
 #[command(version, about, long_about, arg_required_else_help = true)]
-pub(crate) struct Args {
+pub struct Args {
     /// Source path
     #[arg(short, long, required = false)]
-    pub(crate) source: Option<String>,
+    pub source: Option<String>,
 
     /// Source format
     #[arg(long, required = false)]
-    pub(crate) source_format: Option<String>,
+    pub source_format: Option<String>,
 
     /// Destination path
     #[arg(short, long, required = false)]
-    pub(crate) destination: Option<String>,
+    pub destination: Option<String>,
 
     /// Destination format
     #[arg(long, required = false)]
-    pub(crate) destination_format: Option<String>,
+    pub destination_format: Option<String>,
 }
 
-pub(crate) fn source_format(source: Option<&String>, source_format: Option<&String>) -> String {
+pub fn source_format(source: Option<&String>, source_format: Option<&String>) -> String {
     match (source, source_format) {
         (Some(source), None) => match Path::new(&source).extension() {
             Some(extension) => extension.to_string_lossy().into_owned(),
