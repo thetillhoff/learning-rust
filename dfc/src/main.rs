@@ -24,17 +24,20 @@ fn main() -> anyhow::Result<()> {
             // TODO Note that the CSV writer is buffered automatically, so you should not wrap wtr in a buffered writer like io::BufWriter.
             //      https://docs.rs/csv/latest/csv/struct.Writer.html
 
-            let mut csv_reader = csv::ReaderBuilder::new()
+            let csv_reader = csv::ReaderBuilder::new()
                 .delimiter(b',') // TODO get delimiter from file and make it configurable
                 .from_reader(reader);
 
-            // TODO make this configurable
-            let headers = csv_reader.headers()?;
-            csv_writer.write_record(headers)?;
+            let csv_source = reader::CsvSource {
+                reader: csv_reader,
+            };
 
-            for result in csv_reader.records() {
-                let record = result?;
-                csv_writer.write_record(&record)?;
+            // // TODO make this configurable
+            // let headers = csv_reader.headers()?;
+            // csv_writer.write_record(headers)?;
+
+            for record in csv_source {
+                csv_writer.write_record(&record.inner)?;
             };
 
             csv_writer.flush()?;

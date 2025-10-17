@@ -17,13 +17,12 @@ pub(crate) fn open_reader(source: Option<&String>) -> Result<BufReader<File>> {
 }
 
 // Maybe could be helpful later if we want to define some methods like filter, map, dropColumn, etc.
-struct Record {
-    inner: Vec<String>
+pub(crate) struct Record {
+    pub(crate) inner: Vec<String>
 }
 
-struct CsvSource {
-    delimeter: String,
-    reader: csv::Reader<std::io::BufReader<String>>,
+pub(crate) struct CsvSource {
+    pub(crate) reader: csv::Reader<BufReader<File>>,
 }
 
 struct FixedWidthSource {
@@ -32,14 +31,21 @@ struct FixedWidthSource {
 }
 
 impl Iterator for CsvSource {
-    type Item = Vec<String>;
+    type Item = Record;
     fn next(&mut self) -> Option<Self::Item> {
-        todo!("");
+        let csv_record = self.reader.records().next()?;
+        let record = match csv_record {
+            Ok(rec) => Record {
+                inner: rec.iter().map(|s| s.to_string()).collect()
+            },
+            Err(_) => return None
+        };
+        Some(record)
     }
 }
 
 impl Iterator for FixedWidthSource {
-    type Item = Vec<String>;
+    type Item = Record;
     fn next(&mut self) -> Option<Self::Item> {
         todo!("");
     }

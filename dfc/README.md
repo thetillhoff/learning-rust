@@ -13,14 +13,18 @@ dfc –-source A.csv –-ui
 # Show structure with a few rows of data 
 dfc –-source A.csv –-head
 
-dfc –-source A.csv –-headers=false
-dfc –-source A.csv –-include-headers='Id,First Name'
-dfc –-source A.csv --exclude-headers='Id'
+# Customize headers
+dfc –-source A.csv –-source-has-headers=false
+dfc --source A.csv --destination-headers='Id,First Name'
+dfc –-source A.csv –-include-header-by-name='Id,First Name'
+dfc –-source A.csv –-include-header-by-index='0,2'
+dfc –-source A.csv --exclude-header-by-name='Id'
+dfc –-source A.csv --exclude-header-by-index='0,2'
 
 # Defaults
 # If no source is provided, read from stdin
 # If no destination is provided, write to stdout
-dfc # read from stdin, write to stdout
+dfc --source-format csv --destination-format json # read from stdin, write to stdout
 
 # Evaluate types of columns
 dfc --source A.csv # auto-detect source format based on file extension
@@ -37,7 +41,7 @@ dfc --source sqlite://path/to/database.db --destination json://target.dump
 
 ### CSV
 
-[ ] All columns are of type string
+[x] All columns are of type string
 [ ] Types of columns are automatically detected
     Supported types:
     - string
@@ -47,6 +51,13 @@ dfc --source sqlite://path/to/database.db --destination json://target.dump
     - time (HH:MM:SS)
     - datetime (YYYY-MM-DD HH:MM:SS)
     - timestamp (YYYY-MM-DD HH:MM:SS.SSS)
+
+### JSON
+
+[ ] can read list of lists (like csv, might contain header)
+[ ] can read list of objects with named fields
+
+### Others
 
 [ ] fixed column width format
 [ ] JSON
