@@ -64,6 +64,10 @@ dfc --source sqlite://path/to/database.db --destination json://target.dump
 [ ] Write file line by line
 [ ] Add tests
 [ ] Load CSV
+    [ ] Does the file a header row?
+    [ ] What's the delimiter?
+    [ ] What's the line ending?
+    [ ] Is there an empty line at the end of the file?
 [ ] Write CSV
 [ ] Analyze types of columns
 [ ] Read from stdin
