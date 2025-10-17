@@ -1,6 +1,6 @@
 use anyhow::{Result, bail};
 use std::fs::File;
-use std::io::{BufWriter, Write};
+use std::io::{BufWriter};
 use std::path::Path;
 
 pub(crate) fn open_writer(destination: Option<&String>) -> Result<BufWriter<File>> {
