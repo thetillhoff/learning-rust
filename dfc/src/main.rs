@@ -7,8 +7,8 @@ mod writer;
 
 fn main() -> anyhow::Result<()> {
     let args = cli::Args::parse();
-    let source_format = cli::source_format(args.source.as_ref(), args.source_format.as_ref());
-    let destination_format = cli::destination_format(args.destination.as_ref(), args.destination_format.as_ref());
+    let source_format = cli::source_format(args.source.as_ref(), args.source_format.as_ref())?;
+    let destination_format = cli::destination_format(args.destination.as_ref(), args.destination_format.as_ref())?;
     let reader = reader::open_reader(args.source.as_ref())?;
 
     let mut writer = writer::open_writer(args.destination.as_ref())?;
